@@ -1,0 +1,86 @@
+i. Hydrolakes, Rivers shapefile: https://www.hydrosheds.org/products
+
+ii. glacier shape file:
+a. GAMDAM glacier inventory for high-mountain Asia: Central Asia in ArcGIS (shapefile) format, https://doi.org/10.1594/PANGAEA.891419 (Sakai, 2018e).
+b. GAMDAM glacier inventory for high-mountain Asia: North Asia in ArcGIS (shapefile) format, https://doi.org/10.1594/PANGAEA.891420 (Sakai, 2018f).
+c. GAMDAM glacier inventory for high-mountain Asia: South Asia East in ArcGIS (shapefile) format, https://doi.org/10.1594/PANGAEA.891421 (Sakai, 2018g).
+d. GAMDAM glacier inventory for high-mountain Asia: South Asia West in ArcGIS (shapefile) format, https://doi.org/10.1594/PANGAEA.891422 (Sakai, 2018h).
+e. overall info (refer): https://tc.copernicus.org/articles/13/2043/2019/
+
+iii.cities shapefiles: https://www.naturalearthdata.com/downloads/10m-cultural-vectors/
+
+iv. HMA region shapefile: 
+GTN-G. GTN-G Glacier Regions. 2023. doi:10.5904/gtng-glacreg-2023-07.
+Link: https://www.mountcryo.org/datasets/
+
+
+v. SRTM DEM 30m resolution: Google Earth Engine (https://youtu.be/CNVMo3XMrEU)
+
+Code:
+// How to download SRTM DEM (Digital Elevation Model) using Google Earth Engine?
+
+// 1. Load SRTM DEM
+
+var dataset = ee.Image('USGS/SRTMGL1_003');
+var elevation = dataset.select('elevation');
+var data = dataset.clip(roi);
+var SA_DEM = data.select('elevation')
+print(SA_DEM,'elevation');
+
+// 2. Add layer Study Area DEM and Global DEM
+Map.addLayer(SA_DEM, {min: 0, max: 3000}, 'StudyArea');
+Map.addLayer(dataset, {min: 0, max: 3000}, 'Dataset');
+
+// 3. Download or export SRTM DEM to your google drive
+Export.image.toDrive({
+  image:SA_DEM,
+  description:'SRTMDEM',
+  scale:30,
+  region:roi,
+  maxPixels: 1e13
+})
+
+vi. GLDAS:
+Download: https://podaac.jpl.nasa.gov/dataset/TELLUS_GLDAS-NOAH-3.3_TWS-ANOMALY_MONTHLY
+last access: 12.06.2025
+I download from: https://disc.gsfc.nasa.gov/datasets?keywords=GLDAS&page=1
+
+
+
+vii. TN13 and TN14 file:
+https://podaac.jpl.nasa.gov/gravity/grace-documentation#TechnicalNotes
+
+Ubuntu prompt
+
+Folder to browse: D:\MSRSGI\Lab Rotation\Physical Geodesy\Python_Workspace\Organaized\Mascon\pyshbundle-main
+
+
+Browse to folder: cd "/mnt/d/MSRSGI/Lab Rotation/Physical Geodesy/Python_Workspace/Organaized/Mascon/pyshbundle-main"
+Env create: (base) root@DESKTOP-336BSDP:/mnt/d/MSRSGI/Lab Rotation/Physical Geodesy/Python_Workspace/Organaized/Mascon/pyshbundle-main# conda create -n LabRotation
+WARNING: A conda environment already exists at '/home/sudur/new_anaconda3/envs/LabRotation'
+Remove existing environment (y/[n])? n
+
+
+CondaSystemExit: Exiting.
+
+Env activate: (base) root@DESKTOP-336BSDP:/mnt/d/MSRSGI/Lab Rotation/Physical Geodesy/Python_Workspace/Organaized/Mascon/pyshbundle-main# conda activate LabRotation
+(LabRotation) root@DESKTOP-336BSDP:/mnt/d/MSRSGI/Lab Rotation/Physical Geodesy/Python_Workspace/Organaized/Mascon/pyshbundle-main# ls
+LICENSE.md   README.md  docs             examples    mycodes    paper.md        pyshbundle        setup.cfg  tests
+MANIFEST.in  data       environment.yml  mkdocs.yml  paper.bib  pyproject.toml  requirements.txt  setup.py
+Install pyshbundle: (LabRotation) root@DESKTOP-336BSDP:/mnt/d/MSRSGI/Lab Rotation/Physical Geodesy/Python_Workspace/Organaized/Mascon/pyshbundle-main# pip install .
+
+jupyter lab --allow-root
+Then copy url
+
+
+cd /mnt/d/MSRSGI/Masters_thesis/Codes/BDV/pyshbundle-main
+
+
+
+
+
+
+
+
+
+
